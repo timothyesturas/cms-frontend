@@ -7,10 +7,15 @@ function Footer() {
     <footer className="footer">
       <div className="section-container footer-container">
         <Link to="/" className="footer-brand">
-          <HeartHandshake size={26} />
+          <div className="brand-icon">
+            <img
+              src="/BantayMatandaLogo.png"
+              alt="Bantay Matanda Incorporated logo"
+            />
+          </div>
           <span>
-            BANTAY MATANDA
-            <small>INCORPORATED</small>
+            BANTAY MATANDA INCORPORATED
+            <small>"Working towards an elderly-friendly society"</small>
           </span>
         </Link>
 
