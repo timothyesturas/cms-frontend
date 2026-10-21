@@ -1,5 +1,10 @@
 
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { useEffect } from "react";
 
 import Navbar from "./components/Navbar";
@@ -12,20 +17,41 @@ import Gallery from "./pages/Gallery";
 import Articles from "./pages/Articles";
 import Contact from "./pages/Contact";
 
+import { useSiteSettings } from "./hooks/useSiteSettings";
+
 import "./App.css";
+import "./brand-settings.css";
 
 function PageLayout() {
   const location = useLocation();
+  const { settings, isLoading, error } = useSiteSettings();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [location.pathname]);
 
+  useEffect(() => {
+    document.title = settings.siteName || "Bantay Matanda";
+  }, [settings.siteName]);
+
   return (
     <div className="app" id="top">
-      <Navbar />
+      <Navbar settings={settings} />
 
       <main>
+        {error && (
+          <div className="site-settings-notice" role="status">
+            Website branding could not be refreshed. Using the
+            available default settings.
+          </div>
+        )}
+
+        {isLoading && (
+          <div className="site-settings-loading" aria-live="polite">
+            Loading website settings...
+          </div>
+        )}
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -33,6 +59,7 @@ function PageLayout() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/contact" element={<Contact />} />
+
           <Route
             path="*"
             element={
@@ -40,7 +67,9 @@ function PageLayout() {
                 <div className="section-container">
                   <span className="section-label">404 ERROR</span>
                   <h1>Page not found</h1>
-                  <p>The page you're looking for doesn't exist.</p>
+                  <p>
+                    The page you're looking for doesn't exist.
+                  </p>
                   <a className="primary-button" href="/">
                     Return Home
                   </a>
@@ -51,7 +80,7 @@ function PageLayout() {
         </Routes>
       </main>
 
-      <Footer />
+      <Footer settings={settings} />
     </div>
   );
 }

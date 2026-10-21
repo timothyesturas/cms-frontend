@@ -1,0 +1,25 @@
+/*
+ * brand-settings.css
+ *
+ * All site colors are now defined in App.css and derived from the single
+ * --brand-primary variable, so this file no longer overrides any colors.
+ * It only keeps the small loading/notice styles.
+ */
+
+.brand-preview,
+.site-settings-loading,
+.site-settings-notice {
+  color: var(--text);
+}
+
+.site-settings-loading,
+.site-settings-notice {
+  padding: 8px 16px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.site-settings-notice {
+  background: var(--green-light);
+  border-bottom: 1px solid var(--border);
+}
