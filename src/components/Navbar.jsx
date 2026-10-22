@@ -1,10 +1,34 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getSettings } from "../services/settings.service";
 import { NavLink, Link } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const [settings, setSettings] = useState({
+    siteName: "WEBSITE NAME",
+    tagline: '"TAGLINE"',
+    logoUrl: "/LOGOURL.PNG",
+  });
+
+  useEffect(() => {
+    async function loadSettings() {
+      try {
+        const data = await getSettings();
+
+        setSettings((current) => ({
+          ...current,
+          ...data,
+        }));
+      } catch (error) {
+        console.error("Failed to load website settings:", error);
+      }
+    }
+
+    loadSettings();
+  }, []);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -23,17 +47,17 @@ function Navbar() {
         <Link to="/" className="brand" onClick={closeMenu}>
           <div className="brand-icon">
             <img
-              src="/BantayMatandaLogo.png"
-              alt="Bantay Matanda Incorporated logo"
+              src={settings.logoUrl || "/BantayMatandaLogo.png"}
+              alt={`${settings.siteName} logo`}
             />
           </div>
 
           <div className="brand-text">
             <span className="brand-name">
-              BANTAY MATANDA INCORPORATED
+              {settings.siteName}
             </span>
             <span className="brand-subtitle">
-              "Working towards an elderly-friendly society"
+              {settings.tagline}
             </span>
           </div>
         </Link>

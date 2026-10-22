@@ -6,8 +6,33 @@ import {
   HandHeart,
   ArrowRight,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getSettings } from "../services/settings.service";
 
 function Home() {
+
+  const [settings, setSettings] = useState({
+    slogan1: "SLOGAN1",
+    slogan2: "SLOGAN2",
+  });
+
+  useEffect(() => {
+    async function loadSettings() {
+      try {
+        const data = await getSettings();
+
+        setSettings((current) => ({
+          ...current,
+          ...data,
+        }));
+      } catch (error) {
+        console.error("Failed to load website settings:", error);
+      }
+    }
+
+    loadSettings();
+  }, []);
+
   return (
     <>
       <section className="hero">
@@ -19,8 +44,8 @@ function Home() {
             </span>
 
             <h1>
-              Caring for our elders,
-              <span> building a kinder future.</span>
+              {settings.slogan1}
+              <span>{settings.slogan2}</span>
             </h1>
 
             <p className="hero-description">
