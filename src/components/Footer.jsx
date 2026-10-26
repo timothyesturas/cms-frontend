@@ -1,21 +1,49 @@
 
 import { Link } from "react-router-dom";
-import { HeartHandshake, ArrowUp } from "lucide-react";
+import { getSettings } from "../services/settings.service";
+import { ArrowUp } from "lucide-react";
+import { useEffect, useState } from "react";
 
 function Footer() {
+
+  const [settings, setSettings] = useState({
+    siteName: "WEBSITE NAME",
+    tagline: '"TAGLINE"',
+    logoUrl: "/LOGOURL.PNG",
+  });
+
+
+  useEffect(() => {
+    async function loadSettings() {
+      try {
+        const data = await getSettings();
+
+        setSettings((current) => ({
+          ...current,
+          ...data,
+        }));
+      } catch (error) {
+        console.error("Failed to load website settings:", error);
+      }
+    }
+
+    loadSettings();
+  }, []);
+
+
   return (
     <footer className="footer">
       <div className="section-container footer-container">
         <Link to="/" className="footer-brand">
           <div className="brand-icon">
             <img
-              src="/BantayMatandaLogo.png"
-              alt="Bantay Matanda Incorporated logo"
+              src={settings.logoUrl || "/BantayMatandaLogo.png"}
+              alt={`${settings.siteName} logo`}
             />
           </div>
           <span>
-            BANTAY MATANDA INCORPORATED
-            <small>"Working towards an elderly-friendly society"</small>
+              {settings.siteName}
+            <small>{settings.tagline}</small>
           </span>
         </Link>
 

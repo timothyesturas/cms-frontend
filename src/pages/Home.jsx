@@ -14,6 +14,7 @@ function Home() {
   const [settings, setSettings] = useState({
     slogan1: "SLOGAN1",
     slogan2: "SLOGAN2",
+    heroImageUrl: ""
   });
 
   useEffect(() => {
@@ -78,7 +79,7 @@ function Home() {
           <div className="hero-visual">
             <div className="hero-image-frame">
               <img
-                src="/elderly-care.png"
+                src={settings.heroImageUrl || "/elderly-care.png"}
                 alt="A caring interaction between generations"
                 className="hero-image"
               />
