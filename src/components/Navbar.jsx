@@ -1,10 +1,13 @@
-
 import { useEffect, useState } from "react";
 import { getSettings } from "../services/settings.service";
+import { getNavigationItems } from "../services/navigation.service";
 import { NavLink, Link } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
 
+
+
 function Navbar() {
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [settings, setSettings] = useState({
@@ -12,6 +15,10 @@ function Navbar() {
     tagline: '"TAGLINE"',
     logoUrl: "/LOGOURL.PNG",
   });
+
+  const [navItems, setNavItems] = useState([]);
+
+  const [isLoadingNavigation, setIsLoadingNavigation] = useState(true);
 
   useEffect(() => {
     async function loadSettings() {
@@ -27,19 +34,27 @@ function Navbar() {
       }
     }
 
+    async function loadNavigation() {
+      try {
+        const data = await getNavigationItems();
+
+        setNavItems(
+          data
+            .filter((item) => item.isActive && item.isEnabled)
+            .sort((a, b) => a.sortOrder - b.sortOrder)
+        );
+      } catch (error) {
+        console.error("Failed to load navigation items:", error);
+      } finally {
+        setIsLoadingNavigation(false);
+      }
+    }
+
     loadSettings();
+    loadNavigation();
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
-
-  const navItems = [
-    { label: "Home", path: "/" },
-    { label: "About Us", path: "/about" },
-    { label: "Programs, Events, and Activities", path: "/programs" },
-    { label: "Gallery", path: "/gallery" },
-    { label: "Articles", path: "/articles" },
-    { label: "Contact", path: "/contact" },
-  ];
 
   return (
     <header className="header">
@@ -56,6 +71,7 @@ function Navbar() {
             <span className="brand-name">
               {settings.siteName}
             </span>
+
             <span className="brand-subtitle">
               {settings.tagline}
             </span>
@@ -66,26 +82,29 @@ function Navbar() {
           type="button"
           className="menu-toggle"
           onClick={() => setMenuOpen((open) => !open)}
-          aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+          aria-label={
+            menuOpen ? "Close navigation" : "Open navigation"
+          }
           aria-expanded={menuOpen}
         >
           {menuOpen ? <X size={25} /> : <Menu size={25} />}
         </button>
 
         <nav className={`navigation ${menuOpen ? "active" : ""}`}>
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.path === "/"}
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                isActive ? "nav-link active-link" : "nav-link"
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
+          {!isLoadingNavigation &&
+            navItems.map((item) => (
+              <NavLink
+                key={item.id}
+                to={item.path}
+                end={item.path === "/"}
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  isActive ? "nav-link active-link" : "nav-link"
+                }
+              >
+                {item.name}
+              </NavLink>
+            ))}
 
           <Link
             to="/contact"

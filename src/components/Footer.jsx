@@ -43,7 +43,9 @@ function Footer() {
           </div>
           <span>
               {settings.siteName}
-            <small>{settings.tagline}</small>
+            <span className="brand-subtitle">
+              {settings.tagline}
+            </span>
           </span>
         </Link>
 
