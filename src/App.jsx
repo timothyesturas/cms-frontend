@@ -16,6 +16,7 @@ import Programs from "./pages/Programs";
 import Gallery from "./pages/Gallery";
 import Articles from "./pages/Articles";
 import Contact from "./pages/Contact";
+import Services from "./pages/Services";
 
 import { useSiteSettings } from "./hooks/useSiteSettings";
 
@@ -31,7 +32,7 @@ function PageLayout() {
   }, [location.pathname]);
 
   useEffect(() => {
-    document.title = settings.siteName || "Bantay Matanda";
+    document.title = settings.siteName || "SET YOUR SITENAME";
   }, [settings.siteName]);
 
   return (
@@ -54,11 +55,12 @@ function PageLayout() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/aboutUs" element={<About />} />
           <Route path="/programs" element={<Programs />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
 
           <Route
             path="*"

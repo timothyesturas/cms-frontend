@@ -1,0 +1,317 @@
+.articles-page {
+  background: #f7f8f5;
+  min-height: 80vh;
+}
+
+.articles-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.articles-heading h1 {
+  margin: 12px 0 16px;
+  color: #1b4030;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.articles-heading h1 span {
+  color: #52775f;
+}
+
+.articles-heading > div > p {
+  max-width: 650px;
+  margin: 0;
+  color: #68736b;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.articles-facebook-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 14px 20px;
+  color: #ffffff;
+  background: #285b43;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.articles-facebook-button:hover {
+  background: #1b4030;
+}
+
+.articles-content {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e9e5;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(27, 64, 48, 0.04);
+}
+
+.articles-feed-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 28px;
+  border-bottom: 1px solid #e5e9e5;
+}
+
+.articles-feed-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  color: #285b43;
+  background: #eaf1e9;
+  border-radius: 12px;
+}
+
+.articles-feed-heading h2 {
+  margin: 0 0 6px;
+  color: #1b4030;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.articles-feed-heading p {
+  margin: 0;
+  color: #68736b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.facebook-feed-container {
+  display: flex;
+  justify-content: center;
+  padding: 28px;
+  background: #f7f8f5;
+}
+
+.facebook-feed-container iframe {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  min-height: 500px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.articles-feed-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px;
+  border-top: 1px solid #e5e9e5;
+}
+
+.articles-feed-footer p {
+  max-width: 600px;
+  margin: 0;
+  color: #68736b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.articles-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  color: #285b43;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.articles-text-link:hover {
+  color: #1b4030;
+}
+
+@media (max-width: 768px) {
+  .articles-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .articles-heading > div > p {
+    font-size: 15px;
+  }
+
+  .articles-feed-heading {
+    padding: 20px;
+  }
+
+  .facebook-feed-container {
+    padding: 16px;
+  }
+
+  .articles-feed-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .articles-heading h1 {
+    font-size: 32px;
+  }
+
+  .articles-facebook-button {
+    width: 100%;
+  }
+
+  .articles-feed-heading h2 {
+    font-size: 18px;
+  }
+
+  .articles-feed-heading p {
+    font-size: 13px;
+  }
+
+  .facebook-feed-container {
+    padding: 10px;
+  }
+}
+
+/* Facebook Articles Grid */
+
+.articles-post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
+  width: 100%;
+}
+
+.articles-post-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e9e5;
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(27, 64, 48, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.articles-post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(27, 64, 48, 0.1);
+}
+
+/* Keep the embed area consistent across all cards. */
+.articles-post-embed {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.articles-post-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+}
+
+/* Keep the footer aligned at the bottom of each card. */
+.articles-post-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: auto;
+  padding: 18px;
+  border-top: 1px solid #e5e9e5;
+}
+
+.articles-post-footer > span {
+  color: #52775f;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.articles-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #285b43;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.articles-text-link:hover {
+  color: #1b4030;
+}
+
+/* See More button */
+.articles-see-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.articles-see-more-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  color: #ffffff;
+  background: #285b43;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.articles-see-more-button:hover {
+  background: #1b4030;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .articles-post-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .articles-post-embed {
+    height: 420px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .articles-post-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .articles-post-embed {
+    height: 450px;
+  }
+}

@@ -1,20 +1,18 @@
-
 import { Link } from "react-router-dom";
 import {
-  HeartHandshake,
+  Heart,
   Users,
-  HandHeart,
+  BookOpen,
   ArrowRight,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getSettings } from "../services/settings.service";
 
 function Home() {
-
   const [settings, setSettings] = useState({
     slogan1: "SLOGAN1",
     slogan2: "SLOGAN2",
-    heroImageUrl: ""
+    heroImageUrl: "",
   });
 
   useEffect(() => {
@@ -41,7 +39,7 @@ function Home() {
           <div className="hero-content">
             <span className="eyebrow">
               <span className="eyebrow-dot" />
-              CARE, DIGNITY, AND COMPASSION
+              FAITH, HOPE, AND LOVE
             </span>
 
             <h1>
@@ -50,28 +48,28 @@ function Home() {
             </h1>
 
             <p className="hero-description">
-              Every senior deserves respect, meaningful care,
-              and a community that treats them like family.
-              Together, we can make a difference.
+              A church family growing together in faith, sharing
+              God's love, and serving our community with compassion.
+              There is a place for everyone in our fellowship.
             </p>
 
             <div className="hero-actions">
               <Link to="/about" className="primary-button">
-                Discover Our Mission <ArrowRight size={18} />
+                Discover Our Church <ArrowRight size={18} />
               </Link>
 
               <Link to="/programs" className="secondary-button">
-                Learn More
+                Explore Our Ministries
               </Link>
             </div>
 
             <div className="hero-note">
               <div className="note-icon">
-                <HeartHandshake size={21} />
+                <Heart size={21} />
               </div>
               <p>
-                <strong>Care that comes from the heart.</strong>
-                <span>Supporting older adults with compassion.</span>
+                <strong>Rooted in faith. United in love.</strong>
+                <span>Growing closer to God, together.</span>
               </p>
             </div>
           </div>
@@ -79,8 +77,8 @@ function Home() {
           <div className="hero-visual">
             <div className="hero-image-frame">
               <img
-                src={settings.heroImageUrl || "/elderly-care.png"}
-                alt="A caring interaction between generations"
+                src={settings.heroImageUrl || "/church-worship.png"}
+                alt="Church congregation gathered in worship"
                 className="hero-image"
               />
 
@@ -88,18 +86,18 @@ function Home() {
 
               <div className="image-message">
                 <span className="image-message-icon">
-                  <HeartHandshake size={25} />
+                  <Heart size={25} />
                 </span>
                 <div>
-                  <strong>Care that connects generations</strong>
-                  <span>Every hand deserves kindness.</span>
+                  <strong>A place to belong</strong>
+                  <span>Come as you are. Grow in faith.</span>
                 </div>
               </div>
             </div>
 
             <div className="visual-caption">
               <span className="caption-line" />
-              <span>Growing together, caring together.</span>
+              <span>One faith, one family, one purpose.</span>
             </div>
           </div>
         </div>
@@ -110,20 +108,21 @@ function Home() {
           <div className="section-heading">
             <span className="section-label">WHO WE ARE</span>
             <h2>
-              A community built on
-              <span> compassion.</span>
+              A church built on
+              <span> faith and fellowship.</span>
             </h2>
           </div>
 
           <p className="about-description">
-            Bantay Matanda Incorporated stands for a community
-            where older adults are valued, respected, and cared
-            for. We believe kindness and understanding can help
-            create a better quality of life for our elders.
+            We are a community of believers committed to knowing
+            God, following the teachings of Jesus Christ, and
+            sharing His love with others. Through worship, prayer,
+            fellowship, and service, we seek to strengthen our
+            faith and make a meaningful difference in our community.
           </p>
 
           <Link to="/about" className="text-link">
-            Get to know us <ArrowRight size={17} />
+            Get to know our church <ArrowRight size={17} />
           </Link>
         </div>
       </section>
@@ -132,29 +131,33 @@ function Home() {
         <div className="section-container">
           <div className="services-heading">
             <div>
-              <span className="section-label">WHAT WE STAND FOR</span>
+              <span className="section-label">OUR FAITH IN ACTION</span>
               <h2>
-                Care in every <span>little thing.</span>
+                Growing together in
+                <span> God's grace.</span>
               </h2>
             </div>
             <p>
-              Meaningful support begins with respect,
-              connection, and genuine care.
+              Building a stronger relationship with God through
+              worship, fellowship, learning, and service.
             </p>
           </div>
 
           <div className="service-grid">
             <article className="service-card">
               <div className="service-icon">
-                <HeartHandshake size={28} />
+                <Heart size={28} />
               </div>
               <span className="card-number">01</span>
-              <h3>Compassionate Care</h3>
+              <h3>Worship and Prayer</h3>
               <p>
-                Promoting kindness, dignity, and thoughtful
-                support for older adults in our community.
+                Gather with our church family to worship God,
+                pray together, and grow deeper in faith.
               </p>
-              <Link to="/programs" aria-label="Explore our programs">
+              <Link
+                to="/programs"
+                aria-label="Explore worship and prayer activities"
+              >
                 <ArrowRight size={19} />
               </Link>
             </article>
@@ -164,27 +167,35 @@ function Home() {
                 <Users size={28} />
               </div>
               <span className="card-number">02</span>
-              <h3>Community Connection</h3>
+              <h3>Fellowship and Community</h3>
               <p>
-                Encouraging meaningful relationships and
-                bringing people together to support our elders.
+                Build meaningful relationships, encourage one
+                another, and experience the joy of belonging
+                to a church family.
               </p>
-              <Link to="/programs" aria-label="Explore our programs">
+              <Link
+                to="/programs"
+                aria-label="Explore our fellowship activities"
+              >
                 <ArrowRight size={19} />
               </Link>
             </article>
 
             <article className="service-card">
               <div className="service-icon">
-                <HandHeart size={28} />
+                <BookOpen size={28} />
               </div>
               <span className="card-number">03</span>
-              <h3>Respect and Dignity</h3>
+              <h3>Bible Study and Discipleship</h3>
               <p>
-                Helping create an environment where every
-                older person feels valued and included.
+                Discover God's Word, strengthen your understanding
+                of Scripture, and apply biblical principles
+                to everyday life.
               </p>
-              <Link to="/about" aria-label="Learn about our values">
+              <Link
+                to="/programs"
+                aria-label="Explore Bible study and discipleship"
+              >
                 <ArrowRight size={19} />
               </Link>
             </article>
@@ -194,17 +205,18 @@ function Home() {
 
       <section className="contact section">
         <div className="section-container home-cta">
-          <span className="section-label">LET'S MAKE A DIFFERENCE</span>
+          <span className="section-label">YOU ARE WELCOME HERE</span>
           <h2>
-            A little kindness can
-            <span> go a long way.</span>
+            Come grow in faith.
+            <span> Find your church family.</span>
           </h2>
           <p>
-            Be part of a community that believes in care,
-            respect, and a brighter future for older adults.
+            Whether you are exploring faith or looking for a church
+            to call home, we invite you to worship with us, build
+            friendships, and discover God's purpose for your life.
           </p>
           <Link to="/contact" className="primary-button">
-            Get in Touch <ArrowRight size={18} />
+            Connect With Us <ArrowRight size={18} />
           </Link>
         </div>
       </section>

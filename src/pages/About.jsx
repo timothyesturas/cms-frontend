@@ -1,243 +1,195 @@
-
 import { Link } from "react-router-dom";
 import {
   HeartHandshake,
-  ShieldCheck,
+  BookOpen,
   Users,
   HandHeart,
   Target,
   Eye,
-  Heart,
-  Sprout,
-  ArrowRight,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ExternalLink,
 } from "lucide-react";
-
-const values = [
-  {
-    icon: HeartHandshake,
-    title: "Compassion",
-    description:
-      "We believe that genuine care begins with empathy, patience, and understanding.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Dignity and Respect",
-    description:
-      "Every older person deserves respect, a voice, and recognition of their worth.",
-  },
-  {
-    icon: Users,
-    title: "Community",
-    description:
-      "Stronger communities grow when people support one another and work together.",
-  },
-  {
-    icon: HandHeart,
-    title: "Service",
-    description:
-      "Meaningful acts of service can help create a more caring and inclusive society.",
-  },
-];
+import "../styles/About.css";
 
 function About() {
+  // Replace these empty values with the church's official information.
+  const church = {
+    name: "God's Faithful Stewards Christian Ministry Inc.",
+    address: "",
+    phone: "",
+    email: "",
+    officeHours: "",
+    facebookUrl: "https://www.facebook.com/gfscmi",
+    googleMapsUrl: "",
+  };
+
+  const hasAddress = Boolean(church.address.trim());
+
+  const mapUrl = church.googleMapsUrl.trim()
+    ? church.googleMapsUrl
+    : hasAddress
+      ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+          church.address
+        )}`
+      : "";
+
+  const mapEmbedUrl = hasAddress
+    ? `https://maps.google.com/maps?q=${encodeURIComponent(
+        church.address
+      )}&output=embed`
+    : "";
+
+  const mission =
+    "To serve God faithfully by sharing His Word, nurturing spiritual growth, and demonstrating Christ's love through worship, fellowship, and service.";
+
+  const vision =
+    "To be a Christ-centered community where people grow in faith, build meaningful relationships, and live out God's purpose in their lives.";
+
+  const values = [
+    {
+      icon: HeartHandshake,
+      title: "Faith",
+      description:
+        "Building our lives and ministry on God's Word and trusting His guidance in all that we do.",
+    },
+    {
+      icon: Users,
+      title: "Fellowship",
+      description:
+        "Growing together as a church family through encouragement, unity, prayer, and shared faith.",
+    },
+    {
+      icon: BookOpen,
+      title: "God's Word",
+      description:
+        "Learning and applying the teachings of Scripture in our daily lives.",
+    },
+    {
+      icon: HandHeart,
+      title: "Service",
+      description:
+        "Showing Christ's love through compassion, generosity, and service to others.",
+    },
+  ];
+
   return (
-    <div className="about-page">
-      <section className="about-hero">
-        <div className="about-hero-container">
-          <div className="about-hero-content">
-            <div className="about-breadcrumb">
-              <Link to="/">Home</Link>
-              <span>/</span>
-              <span>About Us</span>
-            </div>
+    <main className="about-page">
+      {/* About the Church */}
+      <section className="about-intro-section">
+        <div className="about-container">
+          <p className="about-eyebrow">ABOUT OUR CHURCH</p>
 
-            <span className="about-eyebrow">
-              <span className="about-eyebrow-dot" />
-              GET TO KNOW US
-            </span>
+          <h1>Who We Are</h1>
 
-            <h1>
-              Every elder deserves
-              <span> a community that cares.</span>
-            </h1>
+          <p className="about-intro-text">
+            {church.name} is a Christian ministry committed to growing in
+            faith, sharing God's Word, and building a community centered on
+            Jesus Christ. Through worship, prayer, fellowship, and service,
+            we seek to encourage people to develop a deeper relationship
+            with God and live according to His purpose.
+          </p>
+        </div>
+      </section>
+
+      {/* Church Background */}
+      <section className="about-story-section">
+        <div className="about-container about-story-grid">
+          <div className="about-story-content">
+            <p className="about-eyebrow">OUR STORY</p>
+
+            <h2>A Community United in Christ</h2>
 
             <p>
-              We believe in a society where older adults are respected,
-              valued, and supported. Through compassion and community
-              involvement, we aspire to help build a kinder future
-              for our elders.
+              Our church is a place where people can come together to worship
+              God, learn from His Word, pray with one another, and strengthen
+              their faith.
             </p>
 
-            <a href="#our-story" className="primary-button">
-              Discover Our Story <ArrowRight size={18} />
-            </a>
+            <p>
+              We believe that following Christ involves more than gathering
+              for worship. It also means caring for one another, serving our
+              community, and reflecting God's love through our everyday
+              actions.
+            </p>
+
+            <p>
+              As a church family, we aim to create an environment where
+              individuals and families can grow spiritually, find
+              encouragement, and participate in the work of God's ministry.
+            </p>
           </div>
 
-          <div className="about-hero-visual">
-            <div className="about-hero-image-frame">
-              <img
-                src="/elderly-care.png"
-                alt="A caring interaction between generations"
-                className="about-hero-image"
-              />
-
-              <div className="about-image-shade" />
-
-              <div className="about-image-card">
-                <div className="about-image-card-icon">
-                  <HeartHandshake size={25} />
-                </div>
-                <div>
-                  <strong>Care with purpose</strong>
-                  <span>Respect. Connection. Compassion.</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="about-image-caption">
-              <span />
-              Building an elderly-friendly society
-            </div>
+          <div className="about-story-image">
+            <img
+              src="/elderly-care.png"
+              alt="Church community gathered for worship"
+              onError={(event) => {
+                event.currentTarget.style.display = "none";
+              }}
+            />
           </div>
         </div>
       </section>
 
-      <section className="about-story-section" id="our-story">
-        <div className="section-container about-story-grid">
-          <div className="about-story-heading">
-            <span className="section-label">OUR STORY</span>
-            <h2>
-              Because caring for our elders is a
-              <span> shared responsibility.</span>
-            </h2>
-            <div className="about-story-decoration">
-              <HeartHandshake size={35} />
-            </div>
-          </div>
-
-          <div className="about-story-copy">
-            <p className="about-story-lead">
-              A kinder society begins when we recognize the value
-              of every generation.
-            </p>
-
-            <p>
-              Older adults carry years of experience, knowledge,
-              relationships, and contributions that help shape
-              families and communities. They deserve to live with
-              dignity, feel included, and know that they are valued.
-            </p>
-
-            <p>
-              Bantay Matanda Incorporated stands for a community
-              that values older adults and encourages people to
-              participate in building a more caring and
-              elderly-friendly society.
-            </p>
-
-            <p>
-              We believe that small acts of kindness, meaningful
-              connections, and collective effort can make a positive
-              difference in the lives of older adults.
-            </p>
-          </div>
-        </div>
-      </section>
-
+      {/* Mission and Vision */}
       <section className="about-purpose-section">
-        <div className="section-container">
-          <div className="about-centered-heading">
-            <span className="section-label">OUR PURPOSE</span>
-            <h2>
-              Guided by care.
-              <span> Driven by purpose.</span>
-            </h2>
-            <p>
-              Our direction begins with the kind of society we want
-              to help create for older adults.
-            </p>
+        <div className="about-container">
+          <div className="about-section-heading">
+            <p className="about-eyebrow">OUR PURPOSE</p>
+            <h2>Our Mission and Vision</h2>
           </div>
 
           <div className="about-purpose-grid">
             <article className="about-purpose-card">
               <div className="about-purpose-icon">
-                <Target size={30} />
+                <Target size={26} />
               </div>
-              <span className="about-purpose-overline">
-                WHAT WE STRIVE TO DO
-              </span>
+
               <h3>Our Mission</h3>
-              <p>
-                To promote the dignity, well-being, and inclusion of
-                older adults by encouraging compassionate care,
-                meaningful community involvement, and respect for
-                their needs and contributions.
-              </p>
-              <div className="about-purpose-bottom">
-                <Heart size={17} />
-                <span>Making care meaningful</span>
-              </div>
+
+              <p>{mission}</p>
             </article>
 
-            <article className="about-purpose-card about-vision-card">
+            <article className="about-purpose-card">
               <div className="about-purpose-icon">
-                <Eye size={30} />
+                <Eye size={26} />
               </div>
-              <span className="about-purpose-overline">
-                THE FUTURE WE ENVISION
-              </span>
+
               <h3>Our Vision</h3>
-              <p>
-                A compassionate and elderly-friendly society where
-                every older adult is valued, respected, included,
-                and supported in living a life of dignity.
-              </p>
-              <div className="about-purpose-bottom">
-                <Sprout size={17} />
-                <span>Growing a kinder future</span>
-              </div>
+
+              <p>{vision}</p>
             </article>
           </div>
-
-          <p className="about-purpose-disclaimer">
-            The mission and vision above are proposed website copy.
-            Confirm the organization's official statements before
-            publishing.
-          </p>
         </div>
       </section>
 
+      {/* Core Values */}
       <section className="about-values-section">
-        <div className="section-container">
-          <div className="about-values-heading">
-            <div>
-              <span className="section-label">OUR CORE VALUES</span>
-              <h2>
-                The values behind
-                <span> everything we do.</span>
-              </h2>
-            </div>
+        <div className="about-container">
+          <div className="about-section-heading">
+            <p className="about-eyebrow">WHAT GUIDES US</p>
+            <h2>Our Core Values</h2>
             <p>
-              The way we treat people matters. These principles
-              represent the values that guide a caring community.
+              The principles that guide our faith, relationships, and service
+              as a church community.
             </p>
           </div>
 
           <div className="about-values-grid">
-            {values.map((value, index) => {
+            {values.map((value) => {
               const Icon = value.icon;
 
               return (
                 <article className="about-value-card" key={value.title}>
-                  <div className="about-value-card-top">
-                    <div className="about-value-icon">
-                      <Icon size={27} />
-                    </div>
-                    <span className="about-value-number">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                  <div className="about-value-icon">
+                    <Icon size={25} />
                   </div>
+
                   <h3>{value.title}</h3>
+
                   <p>{value.description}</p>
                 </article>
               );
@@ -246,31 +198,145 @@ function About() {
         </div>
       </section>
 
-      <section className="about-cta-section">
-        <div className="section-container">
-          <div className="about-cta-content">
-            <div className="about-cta-icon">
-              <HeartHandshake size={32} />
-            </div>
-            <span className="about-section-label">
-              BE PART OF THE CHANGE
-            </span>
-            <h2>
-              A more caring society
-              <span> starts with us.</span>
-            </h2>
+      {/* Contact and Location */}
+      <section className="about-contact-section">
+        <div className="about-container">
+          <div className="about-section-heading">
+            <p className="about-eyebrow">GET IN TOUCH</p>
+            <h2>Visit or Contact Us</h2>
             <p>
-              Every helping hand, kind word, and meaningful
-              connection can contribute to a community where older
-              adults feel respected and included.
+              We welcome you to connect with our church and learn more about
+              our worship services and ministry activities.
             </p>
-            <Link to="/contact" className="primary-button about-cta-button">
-              Connect With Us <ArrowRight size={18} />
-            </Link>
+          </div>
+
+          <div className="about-contact-grid">
+            <div className="about-contact-information">
+              <article className="about-contact-card">
+                <div className="about-contact-icon">
+                  <MapPin size={22} />
+                </div>
+
+                <div>
+                  <h3>Church Address</h3>
+                  <p>
+                    {church.address || "Church address to be added."}
+                  </p>
+                </div>
+              </article>
+
+              <article className="about-contact-card">
+                <div className="about-contact-icon">
+                  <Phone size={22} />
+                </div>
+
+                <div>
+                  <h3>Contact Number</h3>
+                  <p>{church.phone || "Contact number to be added."}</p>
+                </div>
+              </article>
+
+              <article className="about-contact-card">
+                <div className="about-contact-icon">
+                  <Mail size={22} />
+                </div>
+
+                <div>
+                  <h3>Email Address</h3>
+                  <p>{church.email || "Email address to be added."}</p>
+                </div>
+              </article>
+
+              <article className="about-contact-card">
+                <div className="about-contact-icon">
+                  <Clock size={22} />
+                </div>
+
+                <div>
+                  <h3>Service Schedule</h3>
+                  <p>{church.officeHours || "Service schedule to be added."}</p>
+                </div>
+              </article>
+
+              {church.facebookUrl && (
+                <a
+                  className="about-contact-social"
+                  href={church.facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink size={20} />
+                  Visit Our Facebook Page
+                  <ExternalLink size={16} />
+                </a>
+              )}
+            </div>
+
+            <div className="about-map-card">
+              <div className="about-map-heading">
+                <MapPin size={21} />
+                <div>
+                  <h3>Find Our Church</h3>
+                  <p>We look forward to welcoming you.</p>
+                </div>
+              </div>
+
+              {mapEmbedUrl ? (
+                <>
+                  <div className="about-map-frame">
+                    <iframe
+                      src={mapEmbedUrl}
+                      title="Church location on Google Maps"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                    />
+                  </div>
+
+                  {mapUrl && (
+                    <a
+                      className="about-map-directions"
+                      href={mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Get Directions
+                      <ExternalLink size={16} />
+                    </a>
+                  )}
+                </>
+              ) : (
+                <div className="about-map-placeholder">
+                  <MapPin size={34} />
+                  <h3>Church Location</h3>
+                  <p>
+                    Add the church's official address to display the map
+                    and provide directions to visitors.
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>
-    </div>
+
+      {/* Contact Link */}
+      <section className="about-cta-section">
+        <div className="about-container about-cta-content">
+          <div>
+            <h2>We Would Love to Connect With You</h2>
+            <p>
+              Have questions about our church, worship services, or ministry
+              activities? Feel free to reach out to us.
+            </p>
+          </div>
+
+          <Link to="/contact" className="about-cta-button">
+            Contact Us
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }
 
